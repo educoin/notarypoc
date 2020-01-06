@@ -1,0 +1,13 @@
+
+Basic HTML page = views\blkcc_notary.erb
+
+This page needs to be served by a http server (just opening in browser will not work, that's why there is mm.rb)
+
+Requirement: Metamask installed (metamask.io)
+
+In Metamask, connect to "Ropsten Test Network".
+
+You can get free Ropsten ether from http://faucet.ropsten.be:3001 (having ether is necessary for the "Register hash" function, but not for "Check hash")
+
+Concerning sha3.js - we will need to check if it does SHA3-256 hashing, which is what we need. (We can compare with online tools such as https://emn178.github.io/online-tools/sha3_256.html or https://www.browserling.com/tools/sha3-hash)
+

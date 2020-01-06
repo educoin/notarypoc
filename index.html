@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <meta charset="utf-8">
+  <title>BLKCC Notary</title>
+  
+  <script async src="web3.js"></script>
+  <script async src="sha3.js"></script>
+  <!--<script async src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+  <script async src="https://cdn.jsdelivr.net/gh/emn178/js-sha3/build/sha3.min.js"></script>-->
+
+  <link rel="stylesheet" href="blkcc_notary.css" media="none" onload="this.media = 'all';">
+  <style>
+    :root, body {height: 100%;}
+    body {
+      margin: 0;
+      background-color: #004;
+    }
+    body > main {visibility: hidden;} 
+    .notary > nav > header {visibility: visible};
+  </style>
+  
+</head>
+<body><main class="notary">
+  
+  <nav>
+    <header title="Document notarization on the Ethereum blockchain">BLKCC Notary</header>
+    <nav>
+      <label for="regFile">Notarize file</label>
+      <label for="regText">Notarize text</label>
+      <label for="regHash">Notarize hash</label>
+      <label for="verHash">Verify hash</label>
+    </nav>
+  </nav>
+  
+  <details open="true">
+    <summary>Session info</summary>
+    <div class="account"><label>Account</label><span>Waiting for <a href="https://metamask.io/" target="_blank">Metamask</a>...</span></div>
+    <div class="balance"><label>Balance</label><span></span></div>
+    <div class="network"><label>Network</label><span></span></div>
+  </details>
+  
+  <aside><noscript><figure>This app requires Javascript to be enabled</figure></noscript></aside>
+
+  <form>
+
+    <fieldset name="regFile">
+      <legend>Select a file to notarize</legend>
+      <label class="fileInput">
+        <span class="btn">Browse...</span>
+        <span>No file selected</span>
+        <input name="regFile" type="file">
+      </label>
+      <input placeholder="hash" type="text" readonly>
+      <button type="submit">file</button>
+    </fieldset>
+
+    <fieldset name="regText">
+      <legend>Enter text to notarize</legend>
+      <textarea name="regText"></textarea>
+      <input placeholder="hash" type="text" readonly>
+      <button type="submit">text</button>
+    </fieldset>
+
+    <fieldset name="regHash">
+      <legend>Enter hash to notarize</legend>
+      <input name="regHash" type="text">
+      <button type="submit">hash</button>
+    </fieldset>
+
+    <fieldset name="verHash">
+      <legend>Enter hash to verify</legend>
+      <input name="verHash" type="text">
+      <button type="submit">hash</button>
+      <div class="statistics">
+        Statistics
+      </div>
+    </fieldset>
+
+    <fieldset name="results">
+      Results
+    </fieldset>
+
+  </form>
+  
+  <script type="module">
+  import BLKCC_Notary from './BLKCC_Notary.js';
+
+  export default new BLKCC_Notary({
+    pollInterval: 2000, // ms to wait between polling for account switching and balance; default is 1000
+    //global: 'notary', // global to publish as, undefined to hide; this and below are all default values
+    //querySelector: '.notary', // querySelector for HTML container
+    //syncInputs: true, // [notImplemented] whether to overwrite other views' inputs when any is changed
+    hashName: 'sha3_256', // name of global function to use for hashing (as string because scripts still loading asynchronously), falls back to notary.web3js.sha3
+    //gas: 400000, // gas limit for registering
+    //gasPrice: 1, // gas price for registering
+    //web3Provider: 'https://ropsten.infura.io/zdW1wbAwFlUpJ3MXYO8M', // defaults to Metamask provider, then this setting
+    //contractAddress: '0x3e36fc445441cdea7f380aec633e6bb0d35a87ff',
+    //contractABI: {/*...*/}
+  });
+  </script>
+  
+</main></body>
+</html><!--
+Donate @ ko-fi.com/zyoxzsys

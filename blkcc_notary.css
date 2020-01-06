@@ -1,0 +1,232 @@
+/* Base & config */
+
+.notary a:hover {color: #0f0;}
+.notary > nav label.selected {border-top-color: #f00;}
+
+.notary {
+
+  --bgHue: 240deg;
+  --bgSaturation: 100%;
+  --bgLightness: 14%;
+  --bgColor: hsl(var(--bgHue) var(--bgSaturation) var(--bgLightness));
+
+  --fontHue: 0deg;
+  --fontSaturation: 0%;
+  --fontLightness: 85%;
+  --fontColor: hsl(var(--fontHue) var(--fontSaturation) var(--fontLightness));
+
+  --titleLightness: 100%;
+  --titleColor: hsl(var(--fontHue) var(--fontSaturation) var(--titleLightness));
+
+  --highlightLightness: 40%;
+  --highlightBg: hsl(var(--bgHue), var(--bgSaturation), var(--highlightLightness), 30%);
+  --highlightBorder: hsl(var(--bgHue), var(--bgSaturation), var(--highlightLightness), 60%);
+
+  --darkenSaturation: 30%;
+  --darkenBg: hsl(var(--bgHue), var(--darkenSaturation), var(--bgLightness), 60%);
+
+  color: var(--fontColor);
+  height: 100%;
+  visibility: visible;
+  overflow-x: hidden;
+  background-color: var(--bgColor);
+  background-image: linear-gradient(to top, var(--titleColor) 0%, #2220 5px);
+  /*background-attachment: local;*/
+  font-family: sans-serif, Helvetica, Arial;
+
+}
+.notary, .notary > nav > header {background-blend-mode: color-dodge;}
+.notary * {
+  box-sizing: border-box;
+  transition: none 300ms ease-out;
+}
+.notary > * {width: 100%;}
+.notary a {
+  color: var(--titleColor);
+  transition-property: color;
+}
+
+.notary button,
+.notary .btn,
+.notary .fileInput,
+.notary input,
+.notary textarea {
+  min-height: 2em;
+  line-height: 2em;
+  border-radius: 0.5rem;
+  border: 1px solid var(--highlightBorder);
+  color: inherit;
+  background: var(--highlightBg);
+}
+.notary button,
+.notary .btn,
+.notary input[placeholder="hash"] {
+  cursor: pointer;
+  transition-property: color, border-color, box-shadow;
+  box-shadow: inset 0 0 0 0 #222;
+}
+.notary button:hover,
+.notary .btn:hover,
+.notary input[placeholder="hash"]:active {
+  color: var(--titleColor);
+  border-color: var(--titleColor);
+  box-shadow: inset 0 0 0 1.5em var(--darkenBg);
+}
+.notary input[placeholder="hash"]:active {transition-duration: 100ms;}
+.notary input[type="file"] {display: none;}
+.notary .fileInput {display:flex;}
+.notary .fileInput > span {
+  flex: auto;
+  padding: 0 0.5em 0 0.5em;
+  text-align: left;
+}
+.notary .fileInput > .btn {flex:none;}
+
+
+
+/* navBar */
+
+.notary > nav,
+.notary > nav * {display: flex;}
+.notary > nav {flex-wrap: wrap;}
+.notary > nav * {
+  min-height: 3rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.notary > nav > header {
+  flex: 1 0 16rem;
+  background-color: var(--bgColor);
+  background-image: linear-gradient(to bottom, var(--titleColor) 0%, #2220 5px);
+  color: var(--titleColor);
+  font-size: 1.5rem;
+  font-weight: 1000;
+  text-shadow: 0px 0px 10px var(--highlightBorder);
+}
+.notary > nav > header::before {
+  content: url("ethLogo.png");
+  margin-right: 0.5rem;
+  filter: drop-shadow(0px 0px 10px var(--highlightBorder));
+}
+
+.notary > nav > nav {flex: 999 0 auto;}
+.notary > nav label {
+  position: relative;
+  flex: 1 1 auto;
+  padding: 0.15rem;
+  border: 2px solid var(--highlightBorder);
+  border-radius: 0.3rem 0.3rem 0 0;
+  white-space: nowrap;
+  cursor: pointer;
+  z-index: 0;
+}
+.notary > nav label::before  {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: var(--highlightBg);
+  z-index: -1;
+}
+
+.notary > nav label.selected {
+  background-color: var(--bgColor);
+  color: var(--titleColor);
+  border-top-color: #f00;
+  border-bottom: none;
+  font-weight: 600;
+  cursor: default;
+  transition-property: color, border-top;
+}
+
+.notary > nav label:not(.selected)::before {content: '';}
+.notary > nav label:not(.selected):hover {
+  background-color: var(--highlightBg);
+  color: var(--titleColor);
+  transition-property: color, background;
+}
+
+
+
+/* accountInfo */
+
+.notary > details {
+  padding: 2rem;
+  font-size: 0.9rem;
+}
+.notary > details > summary {
+  color: hsl(var(--fontHue) var(--fontSaturation) 75%);
+  cursor: pointer;
+  transition-property: color;
+}
+.notary > details > summary:hover {color: var(--titleColor);}
+.notary > details > div {word-break: break-all;}
+.notary > details > div > label {
+  font-family: Courier New;
+  font-weight: bold;
+  text-shadow: 0px 0px 10px var(--highlightBg);
+}
+.notary > details > div > label::after {content: ': ';}
+
+
+
+/* errors */
+
+.notary > aside {padding:0;}
+.notary > aside button {background: #900;}
+.notary > aside figure {
+  background: radial-gradient(#d00 0%, #900 100%);
+  color: #fff;
+  border: 1px solid #d00;
+  font-size: 0.8rem;
+}
+.notary > aside figure > button {
+  margin-right: 1rem;
+  border: 1px solid #d00;
+}
+.notary > aside figure > button:hover {background: #b00;}
+
+
+
+/* appViews */
+
+.notary > form {
+  display: flex;
+  flex-flow: row;
+  position: relative;
+  width: 100%;
+  transition-property: left;
+  margin-bottom: 2em;
+}
+
+.notary > form button[type="submit"]::before {content: 'Submit ';}
+
+.notary > form > fieldset {
+  flex: 0 0 100%;
+  display: inline-block;
+  width: 100%;
+  margin: 0;
+  padding: 0 10%;
+  border: none;
+  text-align: center;
+}
+
+.notary > form > fieldset > * {
+  display: inline-block;
+  width: 100%;
+}
+.notary > form > fieldset legend::after {content: ":";}
+
+.notary > form > fieldset[name="results"] {white-space: pre;}
+.notary > form > fieldset[name="results"] > * {width: auto;}
+
+.notary > form > fieldset[name="regText"] textarea {
+  min-height: 8rem;
+  vertical-align: top;
+  box-sizing: border-box;
+}
+
+
+
+/* Movable */
+.notary .statistics {padding: 2rem;}
